@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Template</title>
+</head>
+<body>
+<form action="/student/test/" method="post">
+{% csrf_token %}
+<p>
+<label for="ua">请输入你希望查询的学生姓名: </label><input type="text"
+name="uname" id="ua"/>
+</p>
+<p>
+<input type="submit" value="查询">
+</form>
+<h1>Welcome, {{ fontdata.info.name }}!</h1>
+<p>Age: {{ fontdata.info.pwd }}</p>
+<p>City: {{ fontdata.info.sex }}</p>
+</body>
+</html>
