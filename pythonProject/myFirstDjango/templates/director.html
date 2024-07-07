@@ -1,36 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>导航</title>
+<title>导航</title><script src="/static/echarts.js"></script>
 <style type="text/css">
 .a {	font-size: 50px;
 }
 .b {	font-size: 40px;
-}
-.a {
-	font-size: 48px;
-}
-.a {
-	font-size: 48px;
-}
-.a {
-	font-size: 48px;
-}
-.a {
-	font-size: 48px;
-}
-.a {
-	font-size: 48px;
-}
-.a {
-	font-size: 48px;
-}
-.a {
-	font-size: 48px;
-}
-.a {
-	font-size: 48px;
 }
 </style>
 </head>
@@ -46,14 +22,13 @@
   </tr>
   <tr>
     <th height="101" bgcolor="#FFFFFF" scope="col"><div align="center"><a href="http://127.0.0.1:8000/student/login/" class="a">用户登录</a></div></th>
-    <th height="757" rowspan="8" bgcolor="#FFFFFF" scope="col"><p>来江苏大学</p>
-    <p>享成功人生</p></th>
+    <th height="757" rowspan="8" bgcolor="#FFFFFF" scope="col"><div id="main" style="width: 400px;height:400px;"></div>
   </tr>
   <tr>
-    <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center" class="a">天气查询</div></th>
+    <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center"><a href="http://127.0.0.1:8000/student/jiangsu/" class="a">天气查询</a></div></th>
   </tr>
   <tr>
-    <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center" class="a">数据总览</div></th>
+    <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center"><a href="http://127.0.0.1:8000/student/chinaMap/" class="a">数据总览</a></div></th>
   </tr>
   <tr>
     <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center"><a href="http://127.0.0.1:8000/student/news/" class="a">最新时讯</a></div></th>
@@ -68,9 +43,64 @@
     <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center" class="a"><a href="http://www.weather.com.cn/weather.com.cn/">友情链接</a></div></th>
   </tr>
   <tr>
-    <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center" class="a">开源地址</div></th>
+    <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center" class="a"><a href="https://github.com/KeQingsocute520/pythonProgress">开源地址</a></div></th>
   </tr>
 </table>
 <p>&nbsp;</p>
+<script type="text/javascript">
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+// 指定图表的配置项和数据
+const option = {
+    graphic: {
+        elements: [
+            {
+                type: 'text',
+                left: 'center',
+                top: 'center',
+                style: {
+                    text: '我爱江苏大学',
+                    fontSize: 40,
+                    fontWeight: 'bold',
+                    lineDash: [0, 200],
+                    lineDashOffset: 0,
+                    fill: 'transparent',
+                    stroke: '#000',
+                    lineWidth: 1
+                },
+                keyframeAnimation: {
+                    duration: 3000,
+                    loop: true,
+                    keyframes: [
+                        {
+                            percent: 0.7,
+                            style: {
+                                fill: 'transparent',
+                                lineDashOffset: 200,
+                                lineDash: [200, 0]
+                            }
+                        },
+                        {
+                            // Stop for a while.
+                            percent: 0.8,
+                            style: {
+                                fill: 'transparent'
+                            }
+                        },
+                        {
+                            percent: 1,
+                            style: {
+                                fill: 'black'
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+};
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
+</script>
 </body>
 </html>

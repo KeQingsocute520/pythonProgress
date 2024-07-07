@@ -1,27 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Random Word Game</title>
-  <style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>城市天气查询</title>
+<style type="text/css">
     table {
       border-collapse: collapse;
       width: 100%;
     }
-    th, td {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
     th {
-      background-color: #f2f2f2;
+      background-color: #3399FF;
     }
-  </style>
+    .a {font-size: 50px;
+    }
+    .b {font-size: 40px;
+    }
+</style>
 </head>
+
 <body>
-  <input type="text" id="searchInput" oninput="searchWords()" placeholder="输入城市">
-  <table id="wordTable">
+<table width="1683" height="354" border="1">
+  <tr>
+    <th width="1299" height="81" bgcolor="#3399FF" scope="col"><span class="b">城市天气查询</span></th>
+    <th width="368" bgcolor="#3399FF" class="b" scope="col"><a href="http://127.0.0.1:8000/student/director/">返回导航</a></th>
+  </tr>
+  <tr>
+    <th height="265" colspan="2" bgcolor="#FFFFFF" scope="col"><img src="https://t12.baidu.com/it/u=786365300,217981545&amp;fm=30&amp;app=106&amp;f=JPEG?w=640&amp;h=261&amp;s=BE366784DAE118052C1AE4C103007099" alt="" width="1669" height="261" /></th>
+  </tr>
+</table>
+<p>
+  <textarea id="searchInput" placeholder="输入城市" oninput="searchWords()"></textarea>
+</p>
+<table id="wordTable">
     <tr>
-      <th>城市</th>
+      <th height="28">城市</th>
       <th>今天</th>
       <th>明天</th>
       <th>后天</th>
@@ -30,8 +42,8 @@
       <th>周二</th>
       <th>周三</th>
     </tr>
-  </table>
-  <p id="wordInfo"></p>
+</table>
+<p id="wordInfo"></p>
 </body>
 <script>
  var words = [
@@ -49,7 +61,7 @@
 { city: "宿迁", day1: "（今天）:大雨转中雨,29/24℃,西南风3-4级转<3级",  day2: "（明天）:大雨转阴,33/26℃,南风<3级转3-4级", day3: "（后天）:小雨,32/26℃,西南风3-4级转<3级", day4: "（周日）:阴,34/28℃,南风<3级", day5: "（周一）:阴转暴雨,33/25℃,西南风<3级", day6: "（周二）:多云转晴,32/23℃,西北风<3级", day7: "（周三）:多云转阴,32/25℃,北风<3级" },
 { city: "徐州", day1: "（今天）:大雨转中雨,28/24℃,西南风<3级",  day2: "（明天）:小雨,32/25℃,南风<3级", day3: "（后天）:小雨转大雨,31/24℃,西风<3级", day4: "（周日）:阴,33/27℃,南风<3级转3-4级", day5: "（周一）:小雨,30/24℃,西南风3-4级转<3级", day6: "（周二）:多云转晴,31/23℃,西北风<3级", day7: "（周三）:多云转阴,32/25℃,东南风<3级" ,},
 
-  
+
 ];
   function searchWords() {
     var input = document.getElementById('searchInput').value.toLowerCase();

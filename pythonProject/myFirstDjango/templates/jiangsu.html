@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>天气查询</title>
+<style type="text/css">
+.a {font-size: 50px;
+}
+.b {font-size: 40px;
+}
+.as {
+	font-size: 36px;
+}
+</style>
+</head>
+
+<body>
+<table width="1683" height="1199" border="1">
+  <tr>
+    <th width="1299" height="91" bgcolor="#3399FF" scope="col"><span class="b">天气查询</span></th>
+    <th width="368" bgcolor="#3399FF" class="b" scope="col"><a href="http://127.0.0.1:8000/student/director/">返回导航</a></th>
+  </tr>
+  <tr>
+    <th height="265" colspan="2" bgcolor="#FFFFFF" scope="col"><img src="https://t12.baidu.com/it/u=786365300,217981545&amp;fm=30&amp;app=106&amp;f=JPEG?w=640&amp;h=261&amp;s=BE366784DAE118052C1AE4C103007099" alt="" width="1669" height="261" /></th>
+  </tr>
+  <tr>
+    <th height="830" rowspan="2" bgcolor="#FFFFFF" scope="col"><div class="" style="width:1200px;height:auto;margin: 0 auto;margin-bottom: 20px;">
+
+        <div class="dh">
+    <div id="map" style="width:1200px;height: 800px;"></div></div></div></th>
+    <th height="129" bgcolor="#FFFFFF" scope="col"><p>&nbsp;</p>
+      <p><a href="http://127.0.0.1:8000/student/search/" class="as">城市天气查询</a></p>
+    <p>&nbsp;</p></th>
+  </tr>
+  <tr>
+    <th height="414" bgcolor="#FFFFFF" scope="col">&nbsp;</th>
+  </tr>
+</table>
+<p></p>
+</body>
+<script src="https://img.hcharts.cn/highmaps/highmaps.js"></script>
+<script src="https://data.jianshukeji.com/geochina/jiangsu.js"></script>
+<script>
+// 随机数据
+var data = [{"name":"南京","value":34},{"name":"苏州","value":36},{"name":"无锡","value":36},{"name":"常州","value":35},{"name":"镇江","value":34},{"name":"扬州","value":38},{"name":"南通","value":36},{"name":"泰州","value":34},{"name":"徐州","value":28},{"name":"盐城","value":33},{"name":"淮安","value":31},{"name":"连云港","value":27},{"name":"宿迁","value":29}];
+// 初始化图表
+var map = new Highcharts.Map('map', {
+  title: {
+    text: '江苏省'
+  },
+  colorAxis: {
+    min: 25,
+    minColor: 'rgb(255,255,255)',
+    maxColor: '#006cee'
+  },
+  series: [{
+    data: data,
+    name: '气温',
+    mapData: Highcharts.maps['cn/jiangsu'],
+    joinBy: 'name', // 根据 name 属性进行关联
+    states: {
+			hover: {
+				color: '#000'
+			}
+		},
+    dataLabels: {
+			enabled: true,
+			format: '{point.name}'
+		}
+  }]
+});
+</script>
+</html>

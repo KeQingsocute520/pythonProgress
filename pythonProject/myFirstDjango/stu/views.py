@@ -23,6 +23,15 @@ def knowledge_view(request):
 def warning_view(request):
     return render(request, 'warning.html')
 
+def chinaMap_view(request):
+    return render(request, 'chinaMap.html')
+
+def jiangsu_view(request):
+    return render(request, 'jiangsu.html')
+
+def search_view(request):
+    return render(request, 'search.html')
+
 def index_view(request):
     m = request.method
     if m == 'GET':

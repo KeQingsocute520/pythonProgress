@@ -12,5 +12,8 @@ urlpatterns = [
     path('director/', views.director_view),
     path('news/', views.news_view),
     path('knowledge/', views.knowledge_view),
-    path('warning/', views.warning_view)
+    path('warning/', views.warning_view),
+    path('chinaMap/', views.chinaMap_view),
+    path('jiangsu/', views.jiangsu_view),
+    path('search/', views.search_view)
 ]
