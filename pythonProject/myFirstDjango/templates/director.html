@@ -8,21 +8,45 @@
 }
 .b {	font-size: 40px;
 }
+#slider {
+    width: 1280px;
+    height: 850px;
+    overflow: hidden;
+    position: relative;
+  }
+  #slider img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -500px;
+    opacity: 0;
+    transition: left 0.5s, opacity 0.5s;
+  }
+  #slider img.active {
+    left: 0;
+    opacity: 1;
+  }
 </style>
 </head>
 
 <body>
-<table width="1683" height="1132" border="1">
+<table width="1683" height="833" border="1">
   <tr>
-    <th width="1299" height="91" bgcolor="#3399FF" scope="col"><span class="b">页内导航</span></th>
-    <th width="368" bgcolor="#3399FF" class="b" scope="col"><a href="http://127.0.0.1:8000/student/homepage/">返回主页</a></th>
-  </tr>
-  <tr>
-    <th colspan="2" bgcolor="#FFFFFF" scope="col"><img src="https://t12.baidu.com/it/u=786365300,217981545&amp;fm=30&amp;app=106&amp;f=JPEG?w=640&amp;h=261&amp;s=BE366784DAE118052C1AE4C103007099" width="1669" height="261" /></th>
+    <th width="445" height="91" bgcolor="#3399FF" scope="col"><span class="b"><a href="http://127.0.0.1:8000/student/homepage/">返回主页</a></span></th>
+    <th width="1222" bgcolor="#3399FF" class="b" scope="col"><span class="b">页内导航</span></th>
   </tr>
   <tr>
     <th height="101" bgcolor="#FFFFFF" scope="col"><div align="center"><a href="http://127.0.0.1:8000/student/login/" class="a">用户登录</a></div></th>
-    <th height="757" rowspan="8" bgcolor="#FFFFFF" scope="col"><div id="main" style="width: 400px;height:400px;"></div>
+    <th rowspan="8" bgcolor="#FFFFFF" scope="col">
+      <div id="slider">
+          <img src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimage109.360doc.com%2FDownloadImg%2F2021%2F11%2F0215%2F233196966_2_20211102030154677&refer=http%3A%2F%2Fimage109.360doc.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1723002434&t=266aaab9e7cf383d649cfeeee3b2b203" alt="" height="689" class="active">
+        <img src="https://p3.itc.cn/q_70/images03/20231126/bb6e05ea5e0f4ec9a51891dab306115f.jpeg">
+        <img src="https://x0.ifengimg.com/res/2021/10766375EC92E6906D403855CC72E8FC7E349989_size693_w1080_h720.png">
+        <img src="https://p5.itc.cn/q_70/images03/20230710/639091d033de4271875722e1b9558d67.jpeg">
+        <img src="https://p0.itc.cn/images01/20210203/f9184b07a23a46369aa4d9906f3e16e2.jpeg">
+        <img src="https://img1.baidu.com/it/u=1552606159,117581482&fm=253&fmt=auto&app=120&f=JPEG?w=750&h=500">
+      </div>
   </tr>
   <tr>
     <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center"><a href="http://127.0.0.1:8000/student/jiangsu/" class="a">天气查询</a></div></th>
@@ -43,64 +67,22 @@
     <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center" class="a"><a href="http://www.weather.com.cn/weather.com.cn/">友情链接</a></div></th>
   </tr>
   <tr>
-    <th height="93" bgcolor="#FFFFFF" scope="col"><div align="center" class="a"><a href="https://github.com/KeQingsocute520/pythonProgress">开源地址</a></div></th>
+    <th height="61" bgcolor="#FFFFFF" scope="col"><div align="center" class="a"><a href="https://github.com/KeQingsocute520/pythonProgress">开源地址</a></div></th>
   </tr>
 </table>
 <p>&nbsp;</p>
-<script type="text/javascript">
-// 基于准备好的dom，初始化echarts实例
-var myChart = echarts.init(document.getElementById('main'));
-// 指定图表的配置项和数据
-const option = {
-    graphic: {
-        elements: [
-            {
-                type: 'text',
-                left: 'center',
-                top: 'center',
-                style: {
-                    text: '我爱江苏大学',
-                    fontSize: 40,
-                    fontWeight: 'bold',
-                    lineDash: [0, 200],
-                    lineDashOffset: 0,
-                    fill: 'transparent',
-                    stroke: '#000',
-                    lineWidth: 1
-                },
-                keyframeAnimation: {
-                    duration: 3000,
-                    loop: true,
-                    keyframes: [
-                        {
-                            percent: 0.7,
-                            style: {
-                                fill: 'transparent',
-                                lineDashOffset: 200,
-                                lineDash: [200, 0]
-                            }
-                        },
-                        {
-                            // Stop for a while.
-                            percent: 0.8,
-                            style: {
-                                fill: 'transparent'
-                            }
-                        },
-                        {
-                            percent: 1,
-                            style: {
-                                fill: 'black'
-                            }
-                        }
-                    ]
-                }
-            }
-        ]
-    }
-};
-// 使用刚指定的配置项和数据显示图表。
-myChart.setOption(option);
+<script>
+var slider = document.getElementById('slider');
+var images = slider.getElementsByTagName('img');
+var currentIndex = 0;
+
+function nextImage() {
+  images[currentIndex].classList.remove('active');
+  currentIndex = (currentIndex + 1) % images.length;
+  images[currentIndex].classList.add('active');
+}
+
+setInterval(nextImage, 2000); // 每2秒切换一张图片
 </script>
 </body>
 </html>

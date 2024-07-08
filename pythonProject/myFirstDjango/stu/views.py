@@ -2,6 +2,49 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import *
 # Create your views here.
+
+def nanjing_view(request):
+    return render(request, 'nanjing.html')
+def wuxi_view(request):
+    return render(request, 'wuxi.html')
+
+def yancheng_view(request):
+    return render(request, 'yancheng.html')
+
+def nantong_view(request):
+    return render(request, 'nantong.html')
+
+def suzhou_view(request):
+    return render(request, 'suzhou.html')
+
+def yangzhou_view(request):
+    return render(request, 'yangzhou.html')
+
+def lianyungang_view(request):
+    return render(request, 'lianyungang.html')
+
+def zhenjiang_view(request):
+    return render(request, 'zhenjiang.html')
+
+def taizhou_view(request):
+    return render(request, 'taizhou.html')
+
+def changzhou_view(request):
+    return render(request, 'changzhou.html')
+
+def huaian_view(request):
+    return render(request, 'huaian.html')
+
+def suqian_view(request):
+    return render(request, 'suqian.html')
+
+def xuzhou_view(request):
+    return render(request, 'xuzhou.html')
+
+
+
+def home_view(request):
+    return render(request, 'home.html')
 def login_view(request):
     return render(request, 'login.html')
 

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <title>南京</title>
+    <script src="/static/echarts.js"></script>
+    <style type="text/css">
+        .b {
+            font-size: 40px;
+        }
+
+        .c {
+            font-size: 16px;
+        }
+
+        .c {
+            font-size: 36px;
+        }
+    </style>
+</head>
+
+<body>
+<table border="1" height="1211" width="1683">
+    <tr>
+        <th bgcolor="#3399FF" height="91" scope="col" width="1299"><span class="b">图表查询-南京</span></th>
+        <th bgcolor="#3399FF" class="b" scope="col" width="368"><a
+                href="http://127.0.0.1:8000/student/main/">返回上级</a></th>
+    </tr>
+    <tr>
+        <th bgcolor="#FFFFFF" colspan="2" height="265" scope="col"><img
+                height="261"
+                src="https://t12.baidu.com/it/u=786365300,217981545&amp;fm=30&amp;app=106&amp;f=JPEG?w=640&amp;h=261&amp;s=BE366784DAE118052C1AE4C103007099" width="1669"/></th>
+    </tr>
+    <tr>
+        <th bgcolor="#FFFFFF" scope="col">
+            <div align="center">
+                <div id="main" style="width: 1200px;height:800px;"></div>
+                <script type="text/javascript">
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('main'));
+
+                    // 指定图表的配置项和数据
+                    var option = {
+                        xAxis: {
+                            type: 'category',
+                            data: ['今天', '明天', '后天', '周日', '周一', '周二', '周三']
+                        },
+                        yAxis: {
+                            type: 'value'
+                        },
+                        series: [
+                            {
+                                data: [34, 34, 35, 35, 34, 32, 30],
+                                type: 'line'
+                            }
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                </script>
+            </div>
+        </th>
+        <th bgcolor="#FFFFFF" height="845" scope="col">
+            <div id="main1" style="width: 400px;height:800px;"></div>
+        </th>
+    </tr>
+</table>
+<script type="text/javascript">
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main1'));
+// 指定图表的配置项和数据
+const option1 = {
+    graphic: {
+        elements: [
+            {
+                type: 'text',
+                left: 'center',
+                top: 'center',
+                style: {
+                    text: '南京',
+                    fontSize: 160,
+                    fontWeight: 'bold',
+                    lineDash: [0, 200],
+                    lineDashOffset: 0,
+                    fill: 'transparent',
+                    stroke: 'rgba(153,0,255,0.84)',
+                    lineWidth: 1
+                },
+                keyframeAnimation: {
+                    duration: 200,
+                    loop: true,
+                    keyframes: [
+                        {
+                            percent: 0.7,
+                            style: {
+                                fill: 'transparent',
+                                lineDashOffset: 200,
+                                lineDash: [200, 0]
+                            }
+                        },
+                        {
+                            // Stop for a while.
+                            percent: 0.8,
+                            style: {
+                                fill: 'transparent'
+                            }
+                        },
+                        {
+                            percent: 1,
+                            style: {
+                                fill: 'black'
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+};
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option1);
+</script>
+</body>
+</html>
+

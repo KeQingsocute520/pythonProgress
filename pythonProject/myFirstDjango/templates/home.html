@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>主页</title>
+<style type="text/css">
+.a {
+	font-size: 50px;
+}
+.b {
+	font-size: 40px;
+}
+  #slider {
+    width: 1688px;
+    height: 897px;
+    overflow: hidden;
+    position: relative;
+  }
+  #slider img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: -500px;
+    opacity: 0;
+    transition: left 0.5s, opacity 0.5s;
+  }
+  #slider img.active {
+    left: 0;
+    opacity: 1;
+  }  
+</style>
+</head>
+
+
+<body>
+
+
+<div align="left">
+  <table width="1700" height="72" border="1">
+    <tr>
+      <th width="1411" bgcolor="#3399FF" scope="col"><div align="left" class="a"><em><strong>江苏省天气查询综合管理系统</strong></em>       </div></th>
+      <th width="273" bgcolor="#3399FF" class="b" scope="col"><a href="http://127.0.0.1:8000/student/director/">页内导航</a></th>
+    </tr>
+  </table>
+  <table width="1696" height="905" border="1">
+    <tr>
+      <th width="2078" scope="col">
+        <div id="slider">
+  <img src="https://img1.baidu.com/it/u=2675429883,2834866002&fm=253&fmt=auto&app=120&f=JPEG?w=754&h=500" class="active" alt="">  
+  <img src="https://img2.baidu.com/it/u=1315262602,2400849332&fm=253&fmt=auto&app=138&f=JPEG?w=889&h=500">  
+  <img src="https://img1.baidu.com/it/u=3674320740,157920583&fm=253&fmt=auto&app=138&f=JPEG?w=805&h=500">
+  <img src="https://nimg.ws.126.net/?url=http%3A%2F%2Fdingyue.ws.126.net%2F2023%2F1127%2F88edc7b6j00s4rkv8004ic0010y00v2m.jpg&thumbnail=660x2147483647&quality=80&type=jpg">  
+</div>
+      </th>
+    </tr>
+  </table>
+</div>
+<script>
+var slider = document.getElementById('slider');
+var images = slider.getElementsByTagName('img');
+var currentIndex = 0;
+
+function nextImage() {
+  images[currentIndex].classList.remove('active');
+  currentIndex = (currentIndex + 1) % images.length;
+  images[currentIndex].classList.add('active');
+}
+
+setInterval(nextImage, 2000); // 每2秒切换一张图片
+</script>
+</body>
+</html>

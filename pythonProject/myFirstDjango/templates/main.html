@@ -1,81 +1,126 @@
 <!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Random Word Game</title>
-  <style>
-    table {
-      border-collapse: collapse;
-      width: 100%;
-    }
-    th, td {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    th {
-      background-color: #f2f2f2;
-    }
-  </style>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>图标查询</title><script src="/static/echarts.js"></script>
+<style type="text/css">
+.b {font-size: 40px;
+}
+.c {
+	font-size: 16px;
+}
+.c {
+	font-size: 36px;
+}
+</style>
 </head>
-<body>
-  <input type="text" id="searchInput" oninput="searchWords()" placeholder="输入城市">
-  <table id="wordTable">
-    <tr>
-      <th>城市</th>
-      <th>今天</th>
-      <th>明天</th>
-      <th>后天</th>
-      <th>周日</th>
-      <th>周一</th>
-      <th>周二</th>
-      <th>周三</th>
-    </tr>
-  </table>
-  <p id="wordInfo"></p>
-</body>
-<script>
- var words = [
-{ city: "南京", day1: "（今天）:多云,34/26℃,西南风5-6级转3-4级",  day2: "（明天）:多云,34/28℃,西南风4-5级转3-4级", day3: "（后天）:多云,35/27℃,西南风4-5级转3-4级", day4: "（周日）:阴,35/28℃,西南风3-4级", day5: "（周一）:阴,34/28℃,南风4-5级转3-4级", day6: "（周二）:雷阵雨转中雨,32/24℃,西风3-4级转<3级", day7: "（周三）:雷阵雨转中雨,30/26℃,南风<3级" },
-{ city: "无锡", day1: "（今天）:晴,36/26℃,西南风<3级",  day2: "（明天）:多云转阴,35/29℃,东南风<3级", day3: "（后天）:多云,35/27℃,南风<3级", day4: "（周日）:多云转阴,35/29℃,东南风<3级", day5: "（周一）:阴转多云,34/28℃,南风<3级", day6: "（周二）:小雨转大雨,32/24℃,西风<3级", day7: "（周三）:小雨转中雨,26/24℃,西南风<3级" },
-{ city: "盐城", day1: "（今天）:多云,33/26℃,西南风3-4级转<3级",  day2: "（明天）:阴,33/28℃,南风<3级", day3: "（后天）:多云转阴,35/29℃,西南风3-4级转<3级", day4: "（周日）:阴,35/29℃,西南风<3级", day5: "（周一）:多云转中雨,34/26℃,西南风<3级", day6: "（周二）:小雨转多云,28/23℃,西风<3级", day7: "（周三）:阴,31/23℃,西北风<3级" },
-{ city: "南通", day1: "（今天）:晴,36/27℃,西南风<3级",  day2: "（明天）:多云转阴,36/28℃,西南风<3级", day3: "（后天）:多云,36/28℃,西南风4-5级转<3级", day4: "（周日）:阴,35/29℃,西南风<3级", day5: "（周一）:阴转多云,34/28℃,南风<3级", day6: "（周二）:小雨转暴雨,33/26℃,西风4-5级转<3级", day7: "（周三）:小雨转阴,30/25℃,西北风<3级" },
-{ city: "苏州", day1: "（今天）:晴,36/27℃,西南风4-5级",  day2: "（明天）:多云,36/28℃,东南风<3级", day3: "（后天）:多云转晴,36/28℃,南风<3级", day4: "（周日）:多云,36/29℃,西南风<3级", day5: "（周一）:多云,36/29℃,南风<3级", day6: "（周二）:小雨转大雨,33/26℃,西风<3级", day7: "（周三）:中雨,29/26℃,西南风<3级" },
-{ city: "扬州", day1: "（今天）:多云,33/27℃,西南风3-4级转<3级",  day2: "（明天）:多云转阴,35/29℃,西南风<3级", day3: "（后天）:多云,35/28℃,西南风<3级", day4: "（周日）:阴,35/28℃,西南风<3级", day5: "（周一）:阴,33/27℃,南风<3级", day6: "（周二）:小雨转大雨,27/24℃,西风<3级", day7: "（周三）:小雨,30/25℃,东北风<3级" },
-{ city: "连云港", day1: "（今天）:大雨转小雨,27/22℃,西南风3-4级转<3级",  day2: "（明天）:小雨转阴,31/25℃,西南风<3级转3-4级", day3: "（后天）:小雨转大雨,32/24℃,西南风4-5级转<3级", day4: "（周日）:阴,32/24℃,南风<3级", day5: "（周一）:小雨转大雨,31/24℃,西南风3-4级转<3级", day6: "（周二）:晴,31/22℃,西北风<3级", day7: "（周三）:多云转阴,32/23℃,北风<3级" },
-{ city: "镇江", day1: "（今天）:晴,34/27℃,西南风3-4级转<3级",  day2: "（明天）:多云,35/28℃,西南风<3级", day3: "（后天）:多云,35/27℃,西南风3-4级转<3级", day4: "（周日）:阴,34/28℃,西南风<3级", day5: "（周一）:阴,32/28℃,南风<3级", day6: "（周二）:小雨转暴雨,29/24℃,西风<3级", day7: "（周三）:小雨转阴,29/24℃,西北风<3级" },
-{ city: "泰州", day1: "（今天）:晴,34/26℃,西南风3-4级转<3级",  day2: "（明天）:阴转多云,34/28℃,西南风<3级", day3: "（后天）:多云转阴,35/28℃,西南风3-4级转<3级", day4: "（周日）:阴,35/28℃,西南风<3级", day5: "（周一）:阴,33/28℃,南风<3级", day6: "（周二）:中雨转暴雨,28/24℃,西风<3级", day7: "（周三）:小雨转阴,30/24℃,西北风<3级" },
-{ city: "常州", day1: "（今天）:晴,35/27℃,西南风<3级",  day2: "（明天）:多云转阴,36/29℃,西南风<3级", day3: "（后天）:多云,36/28℃,西南风<3级", day4: "（周日）:阴,35/30℃,西南风<3级", day5: "（周一）:阴,34/29℃,南风<3级", day6: "（周二）:阴转暴雨,31/25℃,西风<3级", day7: "（周三）:小雨转大雨,28/23℃,西南风<3级" },
-{ city: "淮安", day1: "（今天）:中雨转暴雨,31/25℃,西南风3-4级转<3级",  day2: "（明天）:阴,33/25℃,南风3-4级转4-5级", day3: "（后天）:小雨,32/27℃,西南风4-5级转3-4级", day4: "（周日）:阴,36/30℃,南风<3级", day5: "（周一）:多云转大雨,34/27℃,西南风<3级", day6: "（周二）:多云,33/25℃,西风<3级", day7: "（周三）:多云转阴,33/28℃,南风<3级" },
-{ city: "宿迁", day1: "（今天）:大雨转中雨,29/24℃,西南风3-4级转<3级",  day2: "（明天）:大雨转阴,33/26℃,南风<3级转3-4级", day3: "（后天）:小雨,32/26℃,西南风3-4级转<3级", day4: "（周日）:阴,34/28℃,南风<3级", day5: "（周一）:阴转暴雨,33/25℃,西南风<3级", day6: "（周二）:多云转晴,32/23℃,西北风<3级", day7: "（周三）:多云转阴,32/25℃,北风<3级" },
-{ city: "徐州", day1: "（今天）:大雨转中雨,28/24℃,西南风<3级",  day2: "（明天）:小雨,32/25℃,南风<3级", day3: "（后天）:小雨转大雨,31/24℃,西风<3级", day4: "（周日）:阴,33/27℃,南风<3级转3-4级", day5: "（周一）:小雨,30/24℃,西南风3-4级转<3级", day6: "（周二）:多云转晴,31/23℃,西北风<3级", day7: "（周三）:多云转阴,32/25℃,东南风<3级" ,},
 
-  
-];
-  function searchWords() {
-    var input = document.getElementById('searchInput').value.toLowerCase();
-    var wordTable = document.getElementById('wordTable');
-    wordTable.innerHTML = "<tr><th>城市</th><th>今天</th><th>明天</th><th>后天</th><th>周日</th><th>周一</th><th>周二</th><th>周三</th> </tr> " ;
-    words.forEach(function(item) {
-      if (item.city.includes(input)) {
-        var row = wordTable.insertRow(-1);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-		var cell5 = row.insertCell(4);
-		var cell6 = row.insertCell(5);
-		var cell7 = row.insertCell(6);
-		var cell8 = row.insertCell(7);
-		cell1.innerHTML=item.city;
-		cell2.innerHTML=item.day1;
-		cell3.innerHTML=item.day2;
-		cell4.innerHTML=item.day3;
-		cell5.innerHTML=item.day4;
-		cell6.innerHTML=item.day5;
-		cell7.innerHTML=item.day6;
-		cell8.innerHTML=item.day7;
-      }
-    });
-  }
+<body>
+<table width="1683" height="780" border="1">
+  <tr>
+    <th width="1299" height="91" bgcolor="#3399FF" class="c" scope="col">图表查询</th>
+    <th width="368" bgcolor="#3399FF" class="b" scope="col"><a href="http://127.0.0.1:8000/student/director/">返回上级</a></th>
+  </tr>
+  <tr>
+    <th height="265" colspan="2" bgcolor="#FFFFFF" scope="col"><img src="https://t12.baidu.com/it/u=786365300,217981545&amp;fm=30&amp;app=106&amp;f=JPEG?w=640&amp;h=261&amp;s=BE366784DAE118052C1AE4C103007099" width="1669" height="261" /></th>
+  </tr>
+  <tr>
+    <th height="30" bgcolor="#FFFFFF" class="b" scope="col"><div align="center"><a href="http://127.0.0.1:8000/student/nanjing/">南京</a></div></th>
+    <th height="3037" rowspan="13" bgcolor="#FFFFFF" scope="col"><div id="main" style="width: 400px;height:800px;"></div></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/wuxi/">无锡</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/yancheng/">盐城</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/nantong/">南通</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/suzhou/">苏州</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/yangzhou/">扬州</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/lianyungang/">连云港</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/zhenjiang/">镇江</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/taizhou/">泰州</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/changzhou/">常州</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/huaian/">淮安</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/suqian/">宿迁</a></th>
+  </tr>
+  <tr class="b">
+    <th height="30" bgcolor="#FFFFFF" scope="col"><a href="http://127.0.0.1:8000/student/xuzhou/">徐州</a></th>
+  </tr>
+</table>
+<script type="text/javascript">
+// 基于准备好的dom，初始化echarts实例
+var myChart = echarts.init(document.getElementById('main'));
+// 指定图表的配置项和数据
+const option = {
+    graphic: {
+        elements: [
+            {
+                type: 'text',
+                left: 'center',
+                top: 'center',
+                style: {
+                    text: '启动',
+                    fontSize: 160,
+                    fontWeight: 'bold',
+                    lineDash: [0, 200],
+                    lineDashOffset: 0,
+                    fill: 'transparent',
+                    stroke: 'rgba(153,0,255,0.84)',
+                    lineWidth: 1
+                },
+                keyframeAnimation: {
+                    duration: 200,
+                    loop: true,
+                    keyframes: [
+                        {
+                            percent: 0.7,
+                            style: {
+                                fill: 'transparent',
+                                lineDashOffset: 200,
+                                lineDash: [200, 0]
+                            }
+                        },
+                        {
+                            // Stop for a while.
+                            percent: 0.8,
+                            style: {
+                                fill: 'transparent'
+                            }
+                        },
+                        {
+                            percent: 1,
+                            style: {
+                                fill: 'black'
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+};
+// 使用刚指定的配置项和数据显示图表。
+myChart.setOption(option);
 </script>
+</body>
 </html>
+
